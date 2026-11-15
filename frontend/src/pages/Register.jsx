@@ -180,14 +180,7 @@ function Register() {
               </div>
             </div>
 
-            <div className="confirmation-tip">
-              <AlertCircle size={19} />
-              <p>
-                <strong>Can't find the email?</strong>
-                <br />
-                Please check your Spam, Junk or Promotions folder.
-              </p>
-            </div>
+
 
             <button
               type="button"
