@@ -1,22 +1,53 @@
 
+/* =========================================
+   FIELDSHIFT REGISTRATION PAGE
+========================================= */
+
 .register-page {
   min-height: 100vh;
+  width: 100%;
+  padding: 40px 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 35px 20px;
-  background: #f1f5f2;
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.10), transparent 35%),
+    linear-gradient(135deg, #f0fdf4, #f8fafc 55%, #ecfdf5);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.register-page *,
+.register-loading * {
+  box-sizing: border-box;
 }
 
 .register-card {
   width: 100%;
-  max-width: 470px;
-  padding: 38px;
+  max-width: 450px;
+  padding: 35px;
   background: #ffffff;
-  border: 1px solid #e5ebe6;
-  border-radius: 18px;
-  box-shadow: 0 12px 40px rgba(9, 45, 28, 0.08);
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.09);
+  animation: registerFadeIn 0.5s ease;
 }
+
+@keyframes registerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   BRAND
+========================================= */
 
 .register-brand {
   text-align: center;
@@ -30,41 +61,52 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 12px;
-  border-radius: 17px;
-  color: white;
-  background: #14532d;
+  border-radius: 18px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #14532d, #16a34a);
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.20);
 }
 
 .register-brand h1 {
-  margin: 0;
-  color: #092d1c;
+  color: #052e16;
   font-size: 25px;
   font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.7px;
 }
 
 .register-brand p {
-  margin: 5px 0 0;
   color: #64748b;
-  font-size: 13px;
+  font-size: 12px;
+  margin: 6px 0 0;
 }
 
+/* =========================================
+   REGISTRATION HEADING
+========================================= */
+
 .register-heading {
-  margin-bottom: 24px;
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 .register-heading h2 {
-  margin: 0 0 8px;
-  color: #123524;
-  font-size: 22px;
+  color: #052e16;
+  font-size: 21px;
   font-weight: 750;
+  margin: 0 0 9px;
 }
 
 .register-heading p {
-  margin: 0;
   color: #64748b;
   font-size: 13px;
   line-height: 1.7;
+  margin: 0;
 }
+
+/* =========================================
+   FORM
+========================================= */
 
 .register-card form {
   display: flex;
@@ -72,96 +114,96 @@
 }
 
 .register-card form label {
-  margin: 15px 0 8px;
   color: #334155;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 650;
+  margin-bottom: 8px;
 }
 
 .register-input {
-  height: 47px;
+  min-height: 48px;
   display: flex;
   align-items: center;
   gap: 11px;
   padding: 0 13px;
-  border: 1px solid #dce5de;
-  border-radius: 9px;
-  color: #64748b;
+  margin-bottom: 18px;
+  border: 1px solid #dbe3df;
+  border-radius: 11px;
   background: #ffffff;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  color: #64748b;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .register-input:focus-within {
-  border-color: #15803d;
-  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.09);
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.10);
+}
+
+.register-input svg {
+  flex-shrink: 0;
 }
 
 .register-input input {
   width: 100%;
-  height: 100%;
+  min-width: 0;
   border: none;
   outline: none;
-  color: #1e293b;
   background: transparent;
+  color: #0f172a;
   font-size: 13px;
+  font-family: inherit;
 }
 
 .register-input input::placeholder {
   color: #94a3b8;
 }
 
+/* =========================================
+   BUTTONS
+========================================= */
+
 .register-button {
-  height: 48px;
-  margin-top: 25px;
+  min-height: 49px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   border: none;
-  border-radius: 9px;
-  color: white;
-  background: #14532d;
-  font-size: 14px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #14532d, #15803d);
+  color: #ffffff;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.register-button:hover {
-  background: #166534;
-  transform: translateY(-1px);
+.register-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #064e3b, #166534);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(22, 101, 52, 0.20);
 }
 
 .register-button:disabled {
   opacity: 0.65;
   cursor: not-allowed;
-  transform: none;
 }
 
-.register-message {
-  margin-bottom: 15px;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-.register-message.error {
-  color: #991b1b;
-  background: #fee2e2;
-}
-
-.register-message.success {
-  color: #166534;
-  background: #dcfce7;
-}
+/* =========================================
+   LOGIN LINK
+========================================= */
 
 .register-login {
-  margin: 23px 0 0;
   color: #64748b;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
+  margin: 22px 0 0;
 }
 
 .register-login a {
   color: #15803d;
-  font-weight: 700;
+  font-weight: 750;
   text-decoration: none;
 }
 
@@ -169,12 +211,288 @@
   text-decoration: underline;
 }
 
-@media (max-width: 480px) {
-  .register-card {
-    padding: 27px 20px;
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+.register-message.error {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 12px 13px;
+  margin-bottom: 18px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.register-message.error svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* =========================================
+   LOADING SCREEN
+========================================= */
+
+.register-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #f3f7f2;
+  color: #166534;
+}
+
+.register-loading p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* =========================================
+   EMAIL CONFIRMATION CARD
+========================================= */
+
+.confirmation-card {
+  max-width: 510px;
+  padding: 35px;
+}
+
+.confirmation-card .register-brand {
+  margin-bottom: 22px;
+}
+
+.confirmation-icon {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 7px solid #f0fdf4;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.confirmation-content {
+  text-align: center;
+}
+
+.confirmation-label {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 30px;
+  background: #f0fdf4;
+  color: #15803d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  margin-bottom: 13px;
+}
+
+.confirmation-content h2 {
+  color: #052e16;
+  font-size: 27px;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  margin: 0 0 11px;
+}
+
+.confirmation-description {
+  max-width: 390px;
+  margin: 0 auto 20px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   REGISTERED EMAIL
+========================================= */
+
+.confirmation-email {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  padding: 14px;
+  margin-bottom: 23px;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  background: #f0fdf4;
+  color: #166534;
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.confirmation-email svg {
+  flex-shrink: 0;
+}
+
+/* =========================================
+   CONFIRMATION INSTRUCTIONS
+========================================= */
+
+.confirmation-instructions {
+  padding: 19px;
+  margin-bottom: 17px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #f8fafc;
+  text-align: left;
+}
+
+.confirmation-instructions h3 {
+  color: #052e16;
+  font-size: 14px;
+  font-weight: 750;
+  margin: 0 0 17px;
+}
+
+.confirmation-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-bottom: 15px;
+}
+
+.confirmation-step:last-child {
+  margin-bottom: 0;
+}
+
+.step-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #16a34a;
+  margin-top: 1px;
+}
+
+.confirmation-step p {
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.confirmation-step strong {
+  color: #14532d;
+  font-weight: 750;
+}
+
+/* =========================================
+   SPAM / JUNK REMINDER
+========================================= */
+
+.confirmation-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 13px;
+  margin-bottom: 21px;
+  border: 1px solid #fde68a;
+  border-radius: 11px;
+  background: #fffbeb;
+  color: #92400e;
+  text-align: left;
+}
+
+.confirmation-tip svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.confirmation-tip p {
+  color: #92400e;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.confirmation-tip strong {
+  font-weight: 800;
+}
+
+/* =========================================
+   CONFIRMATION LOGIN BUTTON
+========================================= */
+
+.confirmation-button {
+  min-height: 50px;
+}
+
+.confirmation-footer {
+  color: #94a3b8;
+  font-size: 11px;
+  line-height: 1.8;
+  margin: 19px 0 0;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 600px) {
+  .register-page {
+    padding: 22px 13px;
+    align-items: center;
+  }
+
+  .register-card,
+  .confirmation-card {
+    max-width: 100%;
+    padding: 25px 19px;
+    border-radius: 17px;
+  }
+
+  .register-brand h1 {
+    font-size: 23px;
   }
 
   .register-heading h2 {
-    font-size: 20px;
+    font-size: 19px;
+  }
+
+  .confirmation-content h2 {
+    font-size: 24px;
+  }
+
+  .confirmation-icon {
+    width: 74px;
+    height: 74px;
+  }
+
+  .confirmation-email {
+    font-size: 12px;
+  }
+
+  .confirmation-instructions {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .register-card,
+  .confirmation-card {
+    padding: 22px 15px;
+  }
+
+  .confirmation-content h2 {
+    font-size: 22px;
+  }
+
+  .confirmation-step p,
+  .confirmation-tip p {
+    font-size: 11px;
   }
 }
