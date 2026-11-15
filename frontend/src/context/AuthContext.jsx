@@ -82,11 +82,19 @@ export function AuthProvider({ children }) {
     }
   }, [])
 
+  // Register a farmer and redirect email confirmation
+  // to the correct website.
   async function registerFarmer(fullName, email, password) {
+    const redirectUrl =
+      window.location.hostname === 'localhost'
+        ? 'http://localhost:5173'
+        : 'https://field-shift-agro-shift-field-sense.vercel.app'
+
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
+        emailRedirectTo: redirectUrl,
         data: {
           full_name: fullName,
         },
