@@ -1,0 +1,45 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Node dependencies and build files
+node_modules/
+dist/
+dist-ssr/
+.vite/
+.cache/
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
+
+# Large extracted HWSD raster
+backend/data/hwsd/HWSD2.bil
+
+# Editor and operating system files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+backend/data/hwsd/HWSD2_DB.zip

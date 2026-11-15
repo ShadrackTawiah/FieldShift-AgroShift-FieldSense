@@ -1,0 +1,325 @@
+
+.soil-tests-section {
+  margin: 30px 0;
+  padding: 26px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+}
+
+.soil-tests-heading,
+.soil-tests-records-heading,
+.soil-tests-record-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.soil-tests-heading h2 {
+  margin: 7px 0;
+  color: #163b27;
+  font-size: 23px;
+}
+
+.soil-tests-heading p,
+.soil-tests-form-heading p {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.soil-tests-add-button,
+.soil-tests-save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 17px;
+  border: none;
+  border-radius: 9px;
+  background: #14532d;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.soil-tests-add-button:disabled,
+.soil-tests-save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.soil-tests-form {
+  margin-top: 25px;
+  padding: 22px;
+  background: #f8faf8;
+  border: 1px solid #e2e8e2;
+  border-radius: 14px;
+}
+
+.soil-tests-form-heading h3,
+.soil-tests-records-heading h3 {
+  margin: 0;
+  color: #163b27;
+  font-size: 17px;
+}
+
+.soil-tests-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+  margin-top: 20px;
+}
+
+.soil-tests-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.soil-tests-field input,
+.soil-tests-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d8e1d9;
+  border-radius: 8px;
+  background: #fff;
+  color: #1f2937;
+  font: inherit;
+  font-weight: 400;
+  outline: none;
+}
+
+.soil-tests-field input:focus,
+.soil-tests-field textarea:focus {
+  border-color: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.09);
+}
+
+.soil-tests-notes {
+  margin-top: 18px;
+}
+
+.soil-tests-field textarea {
+  resize: vertical;
+}
+
+.soil-tests-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.soil-tests-cancel-button {
+  padding: 11px 17px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #475569;
+  cursor: pointer;
+}
+
+.soil-tests-records-heading {
+  margin: 30px 0 16px;
+}
+
+.soil-tests-records-heading span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.soil-tests-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 20px;
+  border: 1px dashed #cbd5d1;
+  border-radius: 12px;
+  color: #64748b;
+  text-align: center;
+}
+
+.soil-tests-empty h3 {
+  margin: 12px 0 5px;
+  color: #334155;
+  font-size: 15px;
+}
+
+.soil-tests-empty p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.soil-tests-record-list {
+  display: grid;
+  gap: 15px;
+}
+
+.soil-tests-record {
+  padding: 19px;
+  border: 1px solid #e2e8e2;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.soil-tests-record-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #15803d;
+  font-size: 11px;
+}
+
+.soil-tests-record-top h4 {
+  margin: 8px 0 4px;
+  color: #163b27;
+  font-size: 15px;
+}
+
+.soil-tests-record-top small {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.soil-tests-delete-button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #fee2e2;
+  border-radius: 8px;
+  background: #fff7f7;
+  color: #dc2626;
+  cursor: pointer;
+}
+
+.soil-tests-delete-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.soil-tests-result-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.soil-tests-result {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f8faf8;
+  min-width: 0;
+}
+
+.soil-tests-result span {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.soil-tests-result strong {
+  color: #163b27;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.soil-tests-record-notes {
+  margin-top: 15px;
+  padding-top: 13px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.soil-tests-record-notes strong {
+  color: #334155;
+  font-size: 12px;
+}
+
+.soil-tests-record-notes p {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.soil-tests-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 9px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.soil-tests-alert.error {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.soil-tests-alert.success {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.soil-tests-disclaimer {
+  margin: 18px 0 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.soil-tests-spin {
+  animation: soilTestsSpin 1s linear infinite;
+}
+
+@keyframes soilTestsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .soil-tests-section {
+    padding: 18px;
+  }
+
+  .soil-tests-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .soil-tests-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .soil-tests-result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .soil-tests-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .soil-tests-form-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .soil-tests-result-grid {
+    grid-template-columns: 1fr;
+  }
+}

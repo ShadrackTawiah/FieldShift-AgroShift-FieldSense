@@ -1,0 +1,488 @@
+
+/* =========================================
+   FARMER PROFILE PAGE
+========================================= */
+
+.farmer-profile-page {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 12px 28px 40px;
+  color: #183528;
+  box-sizing: border-box;
+}
+
+/* Header */
+
+.farmer-profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.farmer-profile-eyebrow {
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.farmer-profile-header h1 {
+  margin: 8px 0;
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.farmer-profile-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.farmer-profile-avatar {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  color: #14532d;
+  background: #e0eee3;
+}
+
+.farmer-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Account information */
+
+.farmer-account-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 14px 17px;
+  margin-bottom: 22px;
+  border: 1px solid #dcfce7;
+  border-radius: 11px;
+  background: #f0fdf4;
+  font-size: 12px;
+}
+
+.farmer-account-info span {
+  color: #64748b;
+}
+
+.farmer-account-info strong {
+  color: #166534;
+}
+
+/* Main sections */
+
+.farmer-profile-section {
+  padding: 25px;
+  margin-bottom: 20px;
+  border: 1px solid #e5ebe6;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.farmer-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 23px;
+  color: #15803d;
+}
+
+.farmer-section-heading h2 {
+  margin: 0 0 5px;
+  color: #123524;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.farmer-section-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Form grid */
+
+.farmer-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 19px;
+}
+
+.farmer-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.farmer-field > label {
+  color: #334155;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.farmer-field input:not([type="checkbox"]),
+.farmer-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 13px;
+  border: 1px solid #dce5de;
+  border-radius: 8px;
+  outline: none;
+  color: #1e293b;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.farmer-field input:focus,
+.farmer-field textarea:focus {
+  border-color: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.08);
+}
+
+.farmer-field input:disabled {
+  background: #f1f5f2;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.farmer-field textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Crop selection */
+
+.farmer-crop-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.farmer-crop-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px;
+  border: 1px solid #e2e8e3;
+  border-radius: 8px;
+  color: #475569;
+  background: #fafcfb;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.farmer-crop-option:hover {
+  border-color: #86c99b;
+  background: #f0fdf4;
+}
+
+.farmer-crop-option:has(input:checked) {
+  border-color: #86c99b;
+  color: #166534;
+  background: #f0fdf4;
+}
+
+.farmer-crop-option input,
+.farmer-irrigation input {
+  accent-color: #15803d;
+  cursor: pointer;
+}
+
+/* Additional farming fields */
+
+.farmer-extra-fields {
+  margin-top: 22px;
+  align-items: center;
+}
+
+.farmer-irrigation {
+  justify-content: center;
+}
+
+.farmer-irrigation label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #475569;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.farmer-goals {
+  margin-top: 22px;
+}
+
+/* Profile image upload */
+
+.farmer-image-upload {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  padding: 20px;
+  background: #f7faf7;
+  border: 1px solid #e2ebe4;
+  border-radius: 14px;
+}
+
+.farmer-image-preview {
+  width: 112px;
+  height: 112px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #e0eee3;
+  color: #14532d;
+  border: 3px solid #d2e5d7;
+}
+
+.farmer-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.farmer-image-upload-details h3 {
+  margin: 0 0 7px;
+  color: #14532d;
+  font-size: 16px;
+}
+
+.farmer-image-upload-details p {
+  margin: 0 0 14px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.farmer-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #14532d;
+  color: white;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.farmer-upload-button:hover {
+  background: #166534;
+}
+
+.farmer-upload-button:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Save button */
+
+.farmer-profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.farmer-profile-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 9px;
+  color: white;
+  background: #14532d;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.farmer-profile-actions button:hover {
+  background: #166534;
+}
+
+.farmer-profile-actions button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Success and error messages */
+
+.farmer-profile-success,
+.farmer-profile-error {
+  padding: 13px 15px;
+  margin-bottom: 18px;
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+.farmer-profile-success {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.farmer-profile-error {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+/* =========================================
+   TABLET RESPONSIVENESS
+========================================= */
+
+@media (max-width: 1024px) {
+  .farmer-profile-page {
+    padding: 12px 20px 35px;
+  }
+
+  .farmer-profile-section {
+    padding: 22px;
+  }
+
+  .farmer-crop-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 700px) {
+  .farmer-profile-page {
+    padding: 10px 14px 30px;
+  }
+
+  .farmer-profile-header {
+    gap: 12px;
+  }
+
+  .farmer-profile-header h1 {
+    font-size: 23px;
+  }
+
+  .farmer-profile-header p {
+    font-size: 12px;
+  }
+
+  .farmer-profile-section {
+    padding: 19px 15px;
+    margin-bottom: 16px;
+  }
+
+  .farmer-section-heading h2 {
+    font-size: 16px;
+  }
+
+  .farmer-profile-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .farmer-crop-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .farmer-profile-actions button {
+    width: 100%;
+  }
+
+  .farmer-image-upload {
+    align-items: flex-start;
+    gap: 15px;
+    padding: 16px;
+  }
+
+  .farmer-image-preview {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* Small phones */
+
+@media (max-width: 380px) {
+  .farmer-profile-page {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .farmer-profile-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .farmer-crop-options {
+    grid-template-columns: 1fr;
+  }
+
+  .farmer-image-upload {
+    flex-direction: column;
+  }
+}
+
+/* Back to Dashboard Button */
+
+.farmer-back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 0 15px;
+  margin-bottom: 22px;
+  border: 1px solid #dce8df;
+  border-radius: 9px;
+  color: #14532d;
+  background: #ffffff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.farmer-back-button:hover {
+  background: #f0fdf4;
+  border-color: #86c99b;
+}
+
+.farmer-back-button svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .farmer-back-button {
+    min-height: 38px;
+    margin-bottom: 18px;
+  }
+}

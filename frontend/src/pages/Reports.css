@@ -1,0 +1,549 @@
+
+.reports-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #173b29;
+}
+
+.reports-hero {
+  padding: 40px;
+  border-radius: 18px;
+  color: white;
+  background:
+    linear-gradient(110deg, rgba(5, 46, 22, 0.97), rgba(20, 83, 45, 0.87)),
+    url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400')
+    center/cover;
+}
+
+.reports-eyebrow {
+  color: #15803d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.reports-hero .reports-eyebrow {
+  color: #4ade80;
+}
+
+.reports-hero h1 {
+  max-width: 650px;
+  margin: 14px 0 10px;
+  color: white;
+  font-size: 29px;
+  font-weight: 750;
+}
+
+.reports-hero > p {
+  max-width: 620px;
+  margin: 0;
+  color: #d5e7da;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.reports-location {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 22px;
+  color: #e1f5e7;
+  font-size: 11px;
+}
+
+.reports-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reports-heading h2 {
+  margin: 8px 0 5px;
+  color: #173b29;
+  font-size: 20px;
+}
+
+.reports-heading p {
+  margin: 0;
+  color: #718078;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.reports-farm-panel,
+.reports-preview {
+  padding: 23px;
+  border: 1px solid #e7eee8;
+  border-radius: 13px;
+  background: white;
+  box-shadow: 0 3px 12px rgba(15, 55, 30, 0.035);
+}
+
+.reports-farm-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 17px;
+}
+
+.reports-farm-controls select {
+  width: min(100%, 370px);
+  min-height: 43px;
+  padding: 10px 12px;
+  color: #334155;
+  background: #ffffff;
+  border: 1px solid #dce7df;
+  border-radius: 9px;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.reports-farm-controls select:focus {
+  border-color: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.09);
+}
+
+.reports-farm-coordinates {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #166534;
+  font-size: 11px;
+}
+
+.reports-warning,
+.reports-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 11px 12px;
+  margin-top: 14px;
+  border-radius: 9px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.reports-warning {
+  color: #92400e;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+}
+
+.reports-error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.reports-generate-button,
+.reports-print-button,
+.reports-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 11px 16px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background: #166534;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reports-generate-button {
+  margin-top: 17px;
+}
+
+.reports-generate-button:hover,
+.reports-print-button:hover,
+.reports-primary-button:hover {
+  background: #14532d;
+}
+
+.reports-generate-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.report-card {
+  padding: 21px;
+  border: 1px solid #e7eee8;
+  border-radius: 13px;
+  background: white;
+  box-shadow: 0 3px 12px rgba(15, 55, 30, 0.035);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 22px rgba(15, 55, 30, 0.07);
+}
+
+.report-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 11px;
+  color: #15803d;
+  background: #e8f5eb;
+}
+
+.report-card h3 {
+  margin: 15px 0 7px;
+  color: #173b29;
+  font-size: 14px;
+}
+
+.report-card > p {
+  min-height: 42px;
+  margin: 0;
+  color: #718078;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.report-status {
+  display: inline-flex;
+  margin-top: 14px;
+  padding: 7px 10px;
+  border-radius: 20px;
+  color: #94702b;
+  background: #fff5dc;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.report-status-available {
+  color: #15803d;
+  background: #e8f5eb;
+}
+
+.reports-preview-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.reports-preview-heading h2 {
+  margin: 8px 0 5px;
+  color: #173b29;
+  font-size: 20px;
+}
+
+.reports-preview-heading p {
+  margin: 0;
+  color: #718078;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.reports-print-area {
+  padding: 25px;
+  border: 1px solid #e7eee8;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.reports-document-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #166534;
+  color: #166534;
+}
+
+.reports-document-header span {
+  color: #15803d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.reports-document-header h2 {
+  margin: 8px 0 5px;
+  color: #14532d;
+  font-size: 22px;
+}
+
+.reports-document-header p {
+  margin: 0;
+  color: #718078;
+  font-size: 11px;
+}
+
+.reports-document-section {
+  padding: 19px 0;
+  border-bottom: 1px solid #e7eee8;
+}
+
+.reports-document-section h3 {
+  margin: 0 0 14px;
+  color: #14532d;
+  font-size: 14px;
+}
+
+.reports-document-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.reports-document-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 11px;
+  background: #f5f8f5;
+  border-radius: 8px;
+}
+
+.reports-document-grid span {
+  color: #718078;
+  font-size: 10px;
+}
+
+.reports-document-grid strong {
+  color: #173b29;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.reports-document-note,
+.reports-unavailable {
+  margin: 13px 0 0;
+  color: #718078;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.reports-table-wrapper {
+  margin-top: 18px;
+  overflow-x: auto;
+}
+
+.reports-table-wrapper h4 {
+  margin: 0 0 10px;
+  color: #14532d;
+  font-size: 12px;
+}
+
+.reports-soil-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  text-align: left;
+}
+
+.reports-soil-table th,
+.reports-soil-table td {
+  padding: 10px 8px;
+  border: 1px solid #e5eee7;
+  white-space: nowrap;
+}
+
+.reports-soil-table th {
+  color: #14532d;
+  background: #f0f7f1;
+  font-weight: 700;
+}
+
+.reports-soil-table td {
+  color: #475569;
+}
+
+.reports-limitations-list {
+  padding-left: 19px;
+  margin: 0;
+}
+
+.reports-limitations-list li {
+  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.reports-document-footer {
+  padding-top: 18px;
+  color: #15803d;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.reports-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: #166534;
+  background: white;
+  border: 1px solid #e7eee8;
+  border-radius: 13px;
+}
+
+.reports-empty h2 {
+  color: #14532d;
+  font-size: 18px;
+}
+
+.reports-empty p {
+  max-width: 450px;
+  color: #718078;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.reports-primary-button {
+  margin-top: 10px;
+}
+
+.reports-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 17px;
+  border: 1px solid #dbe8f5;
+  border-radius: 11px;
+  color: #2563a8;
+  background: #f5f9ff;
+}
+
+.reports-note svg {
+  flex-shrink: 0;
+}
+
+.reports-note p {
+  margin: 0;
+  color: #647b94;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.reports-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  min-height: 230px;
+  color: #166534;
+  font-size: 12px;
+}
+
+.reports-spin {
+  animation: reportsSpin 1s linear infinite;
+}
+
+@keyframes reportsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .reports-hero {
+    padding: 27px 20px;
+  }
+
+  .reports-hero h1 {
+    font-size: 23px;
+  }
+
+  .reports-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reports-farm-panel,
+  .reports-preview {
+    padding: 17px;
+  }
+
+  .reports-preview-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .reports-print-area {
+    padding: 15px;
+  }
+
+  .reports-document-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reports-farm-controls select {
+    width: 100%;
+  }
+}
+
+/* Browser print and Save as PDF */
+@page {
+  size: A4;
+  margin: 15mm;
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .reports-print-area,
+  .reports-print-area * {
+    visibility: visible !important;
+  }
+
+  .reports-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    color: #173b29;
+  }
+
+  .reports-document-section {
+    break-inside: avoid;
+  }
+
+  .reports-soil-table {
+    font-size: 9px;
+  }
+
+  .reports-document-header,
+  .reports-document-section,
+  .reports-document-footer {
+    break-inside: avoid;
+  }
+
+  .reports-document-grid > div {
+    background: #f5f8f5 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

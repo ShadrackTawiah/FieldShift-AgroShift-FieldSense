@@ -1,0 +1,639 @@
+
+.earth-observation-page {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  color: #173b29;
+}
+
+.earth-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 40px;
+  border-radius: 18px;
+  color: white;
+  background:
+    linear-gradient(110deg, rgba(5, 46, 22, 0.96), rgba(20, 83, 45, 0.85)),
+    url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1400')
+    center/cover;
+}
+
+.earth-eyebrow {
+  color: #4ade80;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.earth-hero h1 {
+  margin: 14px 0 10px;
+  color: white;
+  font-size: 30px;
+  font-weight: 750;
+}
+
+.earth-hero > p {
+  max-width: 650px;
+  margin: 0;
+  color: #d5e7da;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.earth-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 23px;
+  color: #e1f5e7;
+  font-size: 11px;
+}
+
+.earth-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.earth-section-heading h2 {
+  margin: 8px 0 5px;
+  color: #173b29;
+  font-size: 20px;
+}
+
+.earth-section-heading p {
+  margin: 0;
+  color: #718078;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.earth-dataset-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.earth-dataset-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #e7eee8;
+  border-radius: 13px;
+  background: white;
+  box-shadow: 0 3px 12px rgba(15, 55, 30, 0.035);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.earth-dataset-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 22px rgba(15, 55, 30, 0.08);
+}
+
+.earth-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.earth-dataset-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  color: #15803d;
+  background: #e8f5eb;
+}
+
+.earth-status {
+  padding: 6px 9px;
+  border-radius: 20px;
+  color: #8a6415;
+  background: #fff7df;
+  font-size: 9px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.earth-status-connected {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.earth-category {
+  color: #15803d;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.earth-dataset-card h3 {
+  margin: 8px 0 4px;
+  color: #173b29;
+  font-size: 19px;
+}
+
+.earth-provider {
+  color: #9aa69d;
+  font-size: 10px;
+}
+
+.earth-description {
+  min-height: 67px;
+  margin: 14px 0;
+  color: #718078;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.earth-uses {
+  padding: 13px;
+  border-radius: 9px;
+  background: #f7faf7;
+}
+
+.earth-uses strong {
+  color: #315b40;
+  font-size: 10px;
+}
+
+.earth-uses ul {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 10px 0 0;
+  padding-left: 16px;
+  color: #718078;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.earth-source-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 17px;
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.earth-source-link:hover {
+  color: #052e16;
+}
+
+.earth-information {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid #dceade;
+  border-radius: 12px;
+  background: #f2f8f2;
+}
+
+.earth-information-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.earth-information h3 {
+  margin: 2px 0 7px;
+  color: #14532d;
+  font-size: 13px;
+}
+
+.earth-information p {
+  margin: 0;
+  color: #64756a;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+@media (max-width: 1050px) {
+  .earth-dataset-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .earth-hero {
+    padding: 26px 20px;
+  }
+
+  .earth-hero h1 {
+    font-size: 24px;
+  }
+
+  .earth-dataset-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .earth-description {
+    min-height: auto;
+  }
+
+  .earth-information {
+    padding: 15px;
+  }
+}
+
+/* NASA Satellite Imagery Viewer */
+
+.earth-map,
+.earth-leaflet-map,
+.earth-map-container {
+  width: 100%;
+  height: 480px;
+  min-height: 350px;
+  overflow: hidden;
+  border-radius: 13px;
+  background: #e8eee9;
+}
+
+.earth-map .leaflet-container,
+.earth-leaflet-map .leaflet-container,
+.earth-map-container .leaflet-container {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  border-radius: 13px;
+  font-family: inherit;
+  z-index: 1;
+}
+
+.leaflet-popup-content {
+  color: #173b29;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.leaflet-control-zoom a {
+  color: #14532d !important;
+}
+
+@media (max-width: 650px) {
+  .earth-map,
+  .earth-leaflet-map,
+  .earth-map-container {
+    height: 360px;
+    min-height: 300px;
+  }
+}
+
+/* =========================================
+   SATELLITE VIEWER CONTROLS
+========================================= */
+
+.earth-viewer-controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 18px;
+  border: 1px solid #e7eee8;
+  border-radius: 12px;
+  background: white;
+}
+
+.earth-farm-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.earth-farm-selector label {
+  color: #315b40;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.earth-farm-selector select {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #dce8de;
+  border-radius: 8px;
+  outline: none;
+  background: #f9fbf9;
+  color: #173b29;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.earth-farm-selector select:focus {
+  border-color: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1);
+}
+
+.earth-farm-selector select:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.earth-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 8px;
+  background: #14532d;
+  color: white;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.earth-refresh-button:hover:not(:disabled) {
+  background: #15803d;
+  transform: translateY(-1px);
+}
+
+.earth-refresh-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.earth-spinning {
+  animation: earthSpin 1s linear infinite;
+}
+
+@keyframes earthSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   SELECTED FARM
+========================================= */
+
+.earth-selected-farm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid #dceade;
+  border-radius: 11px;
+  background: #f5faf5;
+}
+
+.earth-selected-farm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.earth-selected-farm > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.earth-selected-farm strong {
+  color: #14532d;
+  font-size: 12px;
+}
+
+.earth-selected-farm span {
+  color: #718078;
+  font-size: 10px;
+}
+
+.earth-farm-coordinates {
+  margin-left: auto;
+  color: #315b40;
+  font-size: 10px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+/* =========================================
+   VIEWER NOTICES AND ERRORS
+========================================= */
+
+.earth-notice,
+.earth-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid #f1e3bd;
+  border-radius: 10px;
+  background: #fffbeb;
+  color: #a16207;
+}
+
+.earth-notice > svg,
+.earth-error > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.earth-notice strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #854d0e;
+  font-size: 11px;
+}
+
+.earth-notice p {
+  margin: 0;
+  color: #856b42;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.earth-error {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   NASA MAP CONTAINER
+========================================= */
+
+.earth-map-container {
+  overflow: hidden;
+  border: 1px solid #e2ebe3;
+  border-radius: 13px;
+  background: white;
+  box-shadow: 0 3px 12px rgba(15, 55, 30, 0.04);
+}
+
+.earth-map-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 18px 20px;
+}
+
+.earth-map-heading h3 {
+  margin: 9px 0 0;
+  color: #173b29;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.earth-map-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #15803d;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.8px;
+}
+
+.earth-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.earth-map-date {
+  color: #718078;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.earth-map {
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  background: #e8eee9;
+}
+
+.earth-leaflet-map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.earth-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+}
+
+.earth-map-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 18px;
+  border-top: 1px solid #edf2ed;
+  background: #fbfdfb;
+}
+
+.earth-map-footer span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #64756a;
+  font-size: 10px;
+}
+
+.earth-map-footer svg {
+  color: #15803d;
+}
+
+/* =========================================
+   IMAGERY INFORMATION
+========================================= */
+
+.earth-imagery-note {
+  border-color: #dceade;
+  background: #f2f8f2;
+  color: #15803d;
+}
+
+.earth-imagery-note strong {
+  color: #14532d;
+}
+
+.earth-imagery-note p {
+  color: #64756a;
+}
+
+/* =========================================
+   RESPONSIVE VIEW
+========================================= */
+
+@media (max-width: 650px) {
+  .earth-viewer-controls {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 14px;
+  }
+
+  .earth-farm-selector {
+    max-width: none;
+  }
+
+  .earth-refresh-button {
+    width: 100%;
+  }
+
+  .earth-selected-farm {
+    flex-wrap: wrap;
+  }
+
+  .earth-farm-coordinates {
+    width: 100%;
+    margin-left: 52px;
+  }
+
+  .earth-map {
+    height: 350px;
+  }
+
+  .earth-map-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .earth-map-date {
+    white-space: normal;
+  }
+
+  .earth-map-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 12px 15px;
+  }
+}
