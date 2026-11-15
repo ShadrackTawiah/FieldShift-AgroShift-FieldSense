@@ -1,6 +1,9 @@
 
-from datetime import date, timedelta
 import asyncio
+import logging
+import os
+
+from datetime import date, timedelta
 
 import httpx
 import numpy as np
@@ -13,19 +16,51 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.hwsd_service import get_hwsd_soil_data
 
+
+# =========================================================
+# APPLICATION CONFIGURATION
+# =========================================================
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("fieldshift")
+
 app = FastAPI(
     title="FieldShift API",
-    description="Agricultural intelligence powered by NASA Earth observation data.",
+    description=(
+        "Agricultural intelligence powered by "
+        "NASA Earth observation data."
+    ),
     version="1.0.0",
 )
 
 
+# =========================================================
+# CORS CONFIGURATION
+# =========================================================
+
+FRONTEND_URL = (
+    "https://field-shift-agro-shift-field-sense.vercel.app"
+)
+
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    FRONTEND_URL,
+]
+
+# Optional additional frontend URLs, separated by commas.
+extra_origins = os.getenv("FRONTEND_URLS", "")
+
+if extra_origins:
+    ALLOWED_ORIGINS.extend(
+        origin.strip().rstrip("/")
+        for origin in extra_origins.split(",")
+        if origin.strip()
+    )
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -58,15 +93,12 @@ SOILGRIDS_CRS = (
     "http://www.opengis.net/def/crs/EPSG/0/54009"
 )
 
-# Convert longitude/latitude into the projection
-# used by our successful SoilGrids browser test.
 WGS84_TO_SOILGRIDS = Transformer.from_crs(
     "EPSG:4326",
     "ESRI:54009",
     always_xy=True,
 )
 
-# Request a 2 km x 2 km area around the farm.
 SOILGRIDS_HALF_SIZE_METERS = 1000
 
 SOIL_PROPERTIES = {
@@ -99,15 +131,27 @@ SOIL_PROPERTIES = {
 
 
 # =========================================================
-# HOME ENDPOINT
+# HOME / HEALTH CHECK
 # =========================================================
 
 @app.get("/")
 async def home():
     return {
         "application": "FieldShift",
-        "description": "NASA-powered agricultural intelligence",
+        "description": (
+            "NASA-powered agricultural intelligence"
+        ),
         "status": "running",
+        "version": "1.0.0",
+    }
+
+
+@app.get("/health")
+async def health_check():
+    return {
+        "success": True,
+        "status": "healthy",
+        "application": "FieldShift API",
     }
 
 
@@ -137,7 +181,10 @@ async def get_nasa_climate(
     }
 
     try:
-        async with httpx.AsyncClient(timeout=60.0) as client:
+        async with httpx.AsyncClient(
+            timeout=60.0
+        ) as client:
+
             response = await client.get(
                 NASA_POWER_URL,
                 params=params,
@@ -154,7 +201,9 @@ async def get_nasa_climate(
         if not parameters:
             raise HTTPException(
                 status_code=502,
-                detail="NASA POWER returned no climate parameters.",
+                detail=(
+                    "NASA POWER returned no climate parameters."
+                ),
             )
 
         return {
@@ -176,10 +225,17 @@ async def get_nasa_climate(
                 "ALLSKY_SFC_SW_DWN": "MJ/m²/day",
             },
             "parameters": parameters,
-            "metadata": nasa_data.get("parameters", {}),
+            "metadata": nasa_data.get(
+                "parameters", {}
+            ),
         }
 
+    except HTTPException:
+        raise
+
     except httpx.HTTPStatusError as error:
+        logger.exception("NASA POWER HTTP error")
+
         raise HTTPException(
             status_code=502,
             detail=(
@@ -189,15 +245,24 @@ async def get_nasa_climate(
         )
 
     except httpx.RequestError:
+        logger.exception("NASA POWER connection error")
+
         raise HTTPException(
             status_code=503,
-            detail="Unable to connect to NASA POWER. Try again later.",
+            detail=(
+                "Unable to connect to NASA POWER. "
+                "Try again later."
+            ),
         )
 
     except ValueError:
+        logger.exception("NASA POWER response error")
+
         raise HTTPException(
             status_code=502,
-            detail="NASA POWER returned an invalid response.",
+            detail=(
+                "NASA POWER returned an invalid response."
+            ),
         )
 
 
@@ -218,28 +283,16 @@ async def fetch_soil_property(
 
     try:
 
-        # -------------------------------------------------
-        # Convert farm coordinates to SoilGrids projection
-        # -------------------------------------------------
-
         x, y = WGS84_TO_SOILGRIDS.transform(
             longitude,
             latitude,
         )
-
-        # -------------------------------------------------
-        # Create a 2 km x 2 km bounding box
-        # -------------------------------------------------
 
         x_min = x - SOILGRIDS_HALF_SIZE_METERS
         x_max = x + SOILGRIDS_HALF_SIZE_METERS
 
         y_min = y - SOILGRIDS_HALF_SIZE_METERS
         y_max = y + SOILGRIDS_HALF_SIZE_METERS
-
-        # -------------------------------------------------
-        # SoilGrids WCS request
-        # -------------------------------------------------
 
         params = [
             ("map", f"/map/{property_id}.map"),
@@ -262,10 +315,6 @@ async def fetch_soil_property(
         response.raise_for_status()
 
         content = response.content
-
-        # -------------------------------------------------
-        # Verify GeoTIFF response
-        # -------------------------------------------------
 
         is_tiff = (
             content.startswith(b"II*\x00")
@@ -290,25 +339,19 @@ async def fetch_soil_property(
                 ),
             }
 
-        # -------------------------------------------------
-        # Read GeoTIFF in memory
-        # -------------------------------------------------
-
         with MemoryFile(content) as memory_file:
 
             with memory_file.open() as dataset:
 
-                if dataset.count < 1:
-                    raise ValueError(
-                        "Soil raster contains no data bands."
-                    )
-
-                if dataset.width < 1 or dataset.height < 1:
+                if (
+                    dataset.count < 1
+                    or dataset.width < 1
+                    or dataset.height < 1
+                ):
                     raise ValueError(
                         "Soil raster has invalid dimensions."
                     )
 
-                # Read the centre pixel of the requested area.
                 raster = dataset.read(
                     1,
                     masked=True,
@@ -321,10 +364,6 @@ async def fetch_soil_property(
                     center_row,
                     center_col,
                 ]
-
-                # -----------------------------------------
-                # Check missing data
-                # -----------------------------------------
 
                 if np.ma.is_masked(raw_value):
                     return {
@@ -353,10 +392,6 @@ async def fetch_soil_property(
                         ),
                     }
 
-                # -----------------------------------------
-                # Convert stored integer to normal units
-                # -----------------------------------------
-
                 converted_value = (
                     raw_value / property_info["scale"]
                 )
@@ -374,6 +409,12 @@ async def fetch_soil_property(
         ValueError,
         OSError,
     ) as error:
+
+        logger.warning(
+            "SoilGrids property %s failed: %s",
+            property_id,
+            error,
+        )
 
         return {
             "name": property_info["name"],
@@ -418,10 +459,6 @@ async def get_soil_data(
             if item["available"]
         )
 
-        # -------------------------------------------------
-        # No properties available
-        # -------------------------------------------------
-
         if available_count == 0:
             return {
                 "success": False,
@@ -441,10 +478,6 @@ async def get_soil_data(
                 ),
             }
 
-        # -------------------------------------------------
-        # At least one property available
-        # -------------------------------------------------
-
         return {
             "success": True,
             "status": (
@@ -460,7 +493,9 @@ async def get_soil_data(
             "depth": "0-5cm",
             "prediction": "Q0.5 median",
             "spatial_resolution": "250m",
-            "data_type": "Modelled soil property estimates",
+            "data_type": (
+                "Modelled soil property estimates"
+            ),
             "available_properties": available_count,
             "total_properties": len(results),
             "properties": results,
@@ -470,21 +505,28 @@ async def get_soil_data(
         }
 
     except httpx.RequestError:
+        logger.exception("SoilGrids connection error")
+
         raise HTTPException(
             status_code=503,
-            detail="Unable to connect to ISRIC SoilGrids.",
+            detail=(
+                "Unable to connect to ISRIC SoilGrids."
+            ),
         )
 
-# --------------------------------------------------
+
+# =========================================================
 # FAO HWSD SOIL INTELLIGENCE ENDPOINT
-# --------------------------------------------------
+# =========================================================
 
 @app.get("/api/soil/hwsd")
 def get_fao_hwsd_soil(
     latitude: float = Query(..., ge=-90, le=90),
     longitude: float = Query(..., ge=-180, le=180),
 ):
+
     try:
+
         result = get_hwsd_soil_data(
             latitude=latitude,
             longitude=longitude,
@@ -493,13 +535,25 @@ def get_fao_hwsd_soil(
         return result
 
     except FileNotFoundError as error:
+
+        logger.exception("HWSD dataset file missing")
+
         raise HTTPException(
-            status_code=500,
-            detail=str(error),
+            status_code=503,
+            detail=(
+                "HWSD soil dataset is not available "
+                "on this server."
+            ),
         )
 
     except Exception as error:
+
+        logger.exception("HWSD soil retrieval failed")
+
         raise HTTPException(
             status_code=500,
-            detail=f"Unable to retrieve FAO soil data: {str(error)}",
+            detail=(
+                "Unable to retrieve FAO soil data: "
+                f"{str(error)}"
+            ),
         )

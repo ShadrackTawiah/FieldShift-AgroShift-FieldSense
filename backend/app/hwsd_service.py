@@ -2,9 +2,15 @@
 from pathlib import Path
 from functools import lru_cache
 import math
+import os
+import threading
 
+import boto3
 import rasterio
+
+from botocore.config import Config
 from access_parser import AccessParser
+from dotenv import load_dotenv
 
 
 # --------------------------------------------------
@@ -12,12 +18,142 @@ from access_parser import AccessParser
 # --------------------------------------------------
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from backend/.env
+load_dotenv(BASE_DIR / ".env")
+
 DATA_DIR = BASE_DIR / "data" / "hwsd"
 
 RASTER_PATH = DATA_DIR / "HWSD2.bil"
 DATABASE_PATH = DATA_DIR / "HWSD2.mdb"
 
 NODATA_VALUE = 65535
+
+
+# --------------------------------------------------
+# CLOUDFLARE R2 CONFIGURATION
+# --------------------------------------------------
+
+R2_ENDPOINT = os.getenv(
+    "R2_ENDPOINT_URL",
+    "https://357f9a99fcd85339a9413954349878e9.r2.cloudflarestorage.com"
+)
+
+R2_BUCKET = os.getenv(
+    "R2_BUCKET_NAME",
+    "fieldshift-hwsd"
+)
+
+DATASET_FILES = [
+    "HWSD2.bil",
+    "HWSD2.hdr",
+    "HWSD2.mdb",
+    "HWSD2.prj",
+    "HWSD2.stx",
+]
+
+_download_lock = threading.Lock()
+
+
+def get_r2_client():
+
+    access_key = os.getenv("R2_ACCESS_KEY_ID")
+    secret_key = os.getenv("R2_SECRET_ACCESS_KEY")
+
+    if not access_key or not secret_key:
+        raise RuntimeError(
+            "R2 credentials are missing. Configure "
+            "R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY."
+        )
+
+    return boto3.client(
+        "s3",
+        endpoint_url=R2_ENDPOINT,
+        aws_access_key_id=access_key,
+        aws_secret_access_key=secret_key,
+        region_name="auto",
+        config=Config(
+            signature_version="s3v4",
+            retries={
+                "max_attempts": 5,
+                "mode": "standard",
+            },
+        ),
+    )
+
+
+# --------------------------------------------------
+# AUTOMATICALLY DOWNLOAD HWSD DATASET FROM R2
+# --------------------------------------------------
+
+def ensure_hwsd_dataset():
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    with _download_lock:
+
+        client = get_r2_client()
+
+        for filename in DATASET_FILES:
+
+            destination = DATA_DIR / filename
+            temporary_file = DATA_DIR / f"{filename}.part"
+
+            try:
+
+                response = client.head_object(
+                    Bucket=R2_BUCKET,
+                    Key=filename,
+                )
+
+                expected_size = response["ContentLength"]
+
+                # Skip downloading if the existing file
+                # has exactly the expected size.
+                if (
+                    destination.is_file()
+                    and destination.stat().st_size == expected_size
+                ):
+                    continue
+
+                print(
+                    f"Downloading {filename}: "
+                    f"{expected_size:,} bytes"
+                )
+
+                if temporary_file.exists():
+                    temporary_file.unlink()
+
+                client.download_file(
+                    R2_BUCKET,
+                    filename,
+                    str(temporary_file),
+                )
+
+                actual_size = temporary_file.stat().st_size
+
+                if actual_size != expected_size:
+                    raise IOError(
+                        f"Incomplete download of {filename}. "
+                        f"Expected {expected_size} bytes, "
+                        f"received {actual_size} bytes."
+                    )
+
+                os.replace(
+                    temporary_file,
+                    destination,
+                )
+
+                print(f"Downloaded successfully: {filename}")
+
+            except Exception:
+
+                if temporary_file.exists():
+                    temporary_file.unlink()
+
+                raise
+
+        print("HWSD dataset is ready.")
 
 
 # --------------------------------------------------
@@ -47,6 +183,8 @@ def safe_float(value):
 
 @lru_cache(maxsize=1)
 def load_hwsd_database():
+
+    ensure_hwsd_dataset()
 
     if not DATABASE_PATH.exists():
         raise FileNotFoundError(
@@ -127,6 +265,8 @@ def load_hwsd_database():
 # --------------------------------------------------
 
 def get_mapping_unit(latitude, longitude):
+
+    ensure_hwsd_dataset()
 
     if not RASTER_PATH.exists():
         raise FileNotFoundError(
